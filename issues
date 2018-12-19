@@ -1,0 +1,225 @@
+root@NetworkAutomation-2:~# ansible-playbook myansible1.yml -vvv
+ansible-playbook 2.7.0
+  config file = /root/ansible.cfg
+  configured module search path = [u'/root/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python2.7/dist-packages/ansible
+  executable location = /usr/bin/ansible-playbook
+  python version = 2.7.12 (default, Dec  4 2017, 14:50:18) [GCC 5.4.0 20160609]
+Using /root/ansible.cfg as config file
+[DEPRECATION WARNING]: [defaults]hostfile option, The key is misleading as it
+can also be a list of hosts, a directory or a list of paths , use [defaults]
+inventory=/path/to/file|dir instead. This feature will be removed in version
+2.8. Deprecation warnings can be disabled by setting deprecation_warnings=False
+ in ansible.cfg.
+Parsed /root/hosts inventory source with ini plugin
+
+PLAYBOOK: myansible1.yml *******************************************************
+1 plays in myansible1.yml
+
+PLAY [Manage GNS3 Devices] *****************************************************
+META: ran handlers
+
+TASK [enable ospf] *************************************************************
+task path: /root/myansible1.yml:10
+<R1> using connection plugin network_cli (was local)
+<R2> using connection plugin network_cli (was local)
+<S1> using connection plugin network_cli (was local)
+<S2> using connection plugin network_cli (was local)
+The full traceback is:
+Traceback (most recent call last):
+  File "/usr/bin/ansible-connection", line 106, in start
+    self.connection._connect()
+  File "/usr/lib/python2.7/dist-packages/ansible/plugins/connection/network_cli.py", line 283, in _connect
+    ssh = self.paramiko_conn._connect()
+  File "/usr/lib/python2.7/dist-packages/ansible/plugins/connection/paramiko_ssh.py", line 249, in _connect
+    self.ssh = SSH_CONNECTION_CACHE[cache_key] = self._connect_uncached()
+  File "/usr/lib/python2.7/dist-packages/ansible/plugins/connection/paramiko_ssh.py", line 365, in _connect_uncached
+    raise AnsibleConnectionFailure(msg)
+AnsibleConnectionFailure: [Errno -2] Name or service not known
+
+fatal: [R2]: FAILED! => {
+    "msg": "[Errno -2] Name or service not known"
+}
+The full traceback is:
+Traceback (most recent call last):
+  File "/usr/bin/ansible-connection", line 106, in start
+    self.connection._connect()
+  File "/usr/lib/python2.7/dist-packages/ansible/plugins/connection/network_cli.py", line 283, in _connect
+    ssh = self.paramiko_conn._connect()
+  File "/usr/lib/python2.7/dist-packages/ansible/plugins/connection/paramiko_ssh.py", line 249, in _connect
+    self.ssh = SSH_CONNECTION_CACHE[cache_key] = self._connect_uncached()
+  File "/usr/lib/python2.7/dist-packages/ansible/plugins/connection/paramiko_ssh.py", line 365, in _connect_uncached
+    raise AnsibleConnectionFailure(msg)
+AnsibleConnectionFailure: [Errno -2] Name or service not known
+
+fatal: [S2]: FAILED! => {
+    "msg": "[Errno -2] Name or service not known"
+}
+<S1> ESTABLISH LOCAL CONNECTION FOR USER: root
+<S1> EXEC /bin/sh -c 'echo ~root && sleep 0'
+<S1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1545185222.7-147889918614054 `" && echo ansible-tmp-1545185222.7-147889918614054="` echo /root/.ansible/tmp/ansible-tmp-1545185222.7-147889918614054 `" ) && sleep 0'
+Using module file /usr/lib/python2.7/dist-packages/ansible/modules/network/ios/ios_config.py
+<S1> PUT /root/.ansible/tmp/ansible-local-19535tRAeeL/tmpWxg7HA TO /root/.ansible/tmp/ansible-tmp-1545185222.7-147889918614054/AnsiballZ_ios_config.py
+<S1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1545185222.7-147889918614054/ /root/.ansible/tmp/ansible-tmp-1545185222.7-147889918614054/AnsiballZ_ios_config.py && sleep 0'
+<S1> EXEC /bin/sh -c '/usr/bin/python /root/.ansible/tmp/ansible-tmp-1545185222.7-147889918614054/AnsiballZ_ios_config.py && sleep 0'
+<R1> ESTABLISH LOCAL CONNECTION FOR USER: root
+<R1> EXEC /bin/sh -c 'echo ~root && sleep 0'
+<R1> EXEC /bin/sh -c '( umask 77 && mkdir -p "` echo /root/.ansible/tmp/ansible-tmp-1545185223.28-159640426659462 `" && echo ansible-tmp-1545185223.28-159640426659462="` echo /root/.ansible/tmp/ansible-tmp-1545185223.28-159640426659462 `" ) && sleep 0'
+Using module file /usr/lib/python2.7/dist-packages/ansible/modules/network/ios/ios_config.py
+<R1> PUT /root/.ansible/tmp/ansible-local-19535tRAeeL/tmp1fksk2 TO /root/.ansible/tmp/ansible-tmp-1545185223.28-159640426659462/AnsiballZ_ios_config.py
+<R1> EXEC /bin/sh -c 'chmod u+x /root/.ansible/tmp/ansible-tmp-1545185223.28-159640426659462/ /root/.ansible/tmp/ansible-tmp-1545185223.28-159640426659462/AnsiballZ_ios_config.py && sleep 0'
+<R1> EXEC /bin/sh -c '/usr/bin/python /root/.ansible/tmp/ansible-tmp-1545185223.28-159640426659462/AnsiballZ_ios_config.py && sleep 0'
+<S1> EXEC /bin/sh -c 'rm -f -r /root/.ansible/tmp/ansible-tmp-1545185222.7-147889918614054/ > /dev/null 2>&1 && sleep 0'
+changed: [S1] => {
+    "banners": {},
+    "changed": true,
+    "commands": [
+        "router ospf 1",
+        "network 0.0.0.0 255.255.255.255 area 0"
+    ],
+    "invocation": {
+        "module_args": {
+            "after": null,
+            "auth_pass": null,
+            "authorize": true,
+            "backup": false,
+            "before": null,
+            "defaults": false,
+            "diff_against": null,
+            "diff_ignore_lines": null,
+            "force": false,
+            "host": null,
+            "intended_config": null,
+            "lines": [
+                "network 0.0.0.0 255.255.255.255 area 0"
+            ],
+            "match": "line",
+            "multiline_delimiter": "@",
+            "parents": [
+                "router ospf 1"
+            ],
+            "password": null,
+            "port": null,
+            "provider": {
+                "auth_pass": null,
+                "authorize": true,
+                "host": null,
+                "password": null,
+                "port": null,
+                "ssh_keyfile": null,
+                "timeout": null,
+                "username": null
+            },
+            "replace": "line",
+            "running_config": null,
+            "save": false,
+            "save_when": "never",
+            "src": null,
+            "ssh_keyfile": null,
+            "timeout": null,
+            "username": null
+        }
+    },
+    "updates": [
+        "router ospf 1",
+        "network 0.0.0.0 255.255.255.255 area 0"
+    ]
+}
+<R1> EXEC /bin/sh -c 'rm -f -r /root/.ansible/tmp/ansible-tmp-1545185223.28-159640426659462/ > /dev/null 2>&1 && sleep 0'
+changed: [R1] => {
+    "banners": {},
+    "changed": true,
+    "commands": [
+        "router ospf 1",
+        "network 0.0.0.0 255.255.255.255 area 0"
+    ],
+    "invocation": {
+        "module_args": {
+            "after": null,
+            "auth_pass": null,
+            "authorize": true,
+            "backup": false,
+            "before": null,
+            "defaults": false,
+            "diff_against": null,
+            "diff_ignore_lines": null,
+            "force": false,
+            "host": null,
+            "intended_config": null,
+            "lines": [
+                "network 0.0.0.0 255.255.255.255 area 0"
+            ],
+            "match": "line",
+            "multiline_delimiter": "@",
+            "parents": [
+                "router ospf 1"
+            ],
+            "password": null,
+            "port": null,
+            "provider": {
+                "auth_pass": null,
+                "authorize": true,
+                "host": null,
+                "password": null,
+                "port": null,
+                "ssh_keyfile": null,
+                "timeout": null,
+                "username": null
+            },
+            "replace": "line",
+            "running_config": null,
+            "save": false,
+            "save_when": "never",
+            "src": null,
+            "ssh_keyfile": null,
+            "timeout": null,
+            "username": null
+        }
+    },
+    "updates": [
+        "router ospf 1",
+        "network 0.0.0.0 255.255.255.255 area 0"
+    ]
+}
+
+TASK [debug] *******************************************************************
+task path: /root/myansible1.yml:19
+ok: [R1] => {
+    "print_output": {
+        "banners": {},
+        "changed": true,
+        "commands": [
+            "router ospf 1",
+            "network 0.0.0.0 255.255.255.255 area 0"
+        ],
+        "failed": false,
+        "updates": [
+            "router ospf 1",
+            "network 0.0.0.0 255.255.255.255 area 0"
+        ]
+    }
+}
+ok: [S1] => {
+    "print_output": {
+        "banners": {},
+        "changed": true,
+        "commands": [
+            "router ospf 1",
+            "network 0.0.0.0 255.255.255.255 area 0"
+        ],
+        "failed": false,
+        "updates": [
+            "router ospf 1",
+            "network 0.0.0.0 255.255.255.255 area 0"
+        ]
+    }
+}
+META: ran handlers
+META: ran handlers
+        to retry, use: --limit @/root/myansible1.retry
+
+PLAY RECAP *********************************************************************
+R1                         : ok=2    changed=1    unreachable=0    failed=0
+R2                         : ok=0    changed=0    unreachable=0    failed=1
+S1                         : ok=2    changed=1    unreachable=0    failed=0
+S2                         : ok=0    changed=0    unreachable=0    failed=1
